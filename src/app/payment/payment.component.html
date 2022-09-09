@@ -1,0 +1,9 @@
+<div class="paymentmodule border_gradient">
+  <h1>Furniture Payment</h1><br><br><br>
+  <h4>Payment ID: {{this.orders.payment.paymentId}}</h4>
+  <h3>your total </h3>
+  <h5>₹{{payment.paymentAmount}}</h5><br/>
+
+  <p *ngIf="orders.status" class="succes">Payment successful</p>
+  <button *ngIf="!orders.status"(click)="paynow()">pay now</button>
+  </div>
