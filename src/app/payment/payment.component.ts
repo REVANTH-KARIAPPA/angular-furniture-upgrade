@@ -22,7 +22,9 @@ export class PaymentComponent implements OnInit {
     email: "",
   };
   content: string;
+  popup:boolean=false;
   message: any="not yet started";
+  status:boolean=true;
 
   paymentId = "";
   error = "";
@@ -35,7 +37,7 @@ export class PaymentComponent implements OnInit {
     "image": "/assets/img/furnitures.png",
     "order_id": "",
     "handler": function (response: any) {
-      var event = new CustomEvent("payment.successful",
+      var event = new CustomEvent("payment.success",
         {
           detail: response,
           bubbles: true,
@@ -69,7 +71,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.token.getUser();
     this.payment.email=this.currentUser.email;
-    console.log("current user"+this.currentUser);
+
 
   this.options.prefill.name = this.currentUser.username;
   this.options.prefill.contact="0000000000";
@@ -83,6 +85,7 @@ export class PaymentComponent implements OnInit {
     this.productService.orderById(this.oid).subscribe(
       data => {
         this.orders = data;
+        console.log(this.orders.status);
         this.payment.paymentAmount=this.orders.orderTotal;
         this.payment.paymentId=this.orders.payment.paymentId;
         // console.log(data);
@@ -108,8 +111,10 @@ export class PaymentComponent implements OnInit {
 
 
   paynow():void{
+
     this.sendPayment();
     this.fetchOrderById();
+    this.status=false;
 
 
     this.paymentId = '';
@@ -133,6 +138,8 @@ export class PaymentComponent implements OnInit {
   @HostListener('window:payment.success', ['$event'])
   onPaymentSuccess(event: any): void {
     this.message = "Success Payment";
+    this.popup=true;
+    
   }
 
 }

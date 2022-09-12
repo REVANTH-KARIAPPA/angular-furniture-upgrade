@@ -13,11 +13,15 @@ import { OrderComponent } from './order/order.component';
 import { PaymentComponent } from './payment/payment.component';
 
 
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'home/user', component: BoardUserComponent},
   { path: 'pay', component: PaymentComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'login/register', component: RegisterComponent },
+  { path:  'register/login',component:LoginComponent},
   { path: 'profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent },
   { path: 'mod', component: BoardModeratorComponent },

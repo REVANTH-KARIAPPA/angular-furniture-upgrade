@@ -5,7 +5,7 @@
       <td>{{product.productName}} <br> ₹{{product.prize}}</td>
       <td><button (click)='delGet(product.productId)'>Delete Product</button></td>
     </tr>
-
+    
     <tr class="green" *ngIf="this.check">
       <td colspan = "2"><button (click)='orderPlaced(products)'>Place Order</button></td>
     </tr>

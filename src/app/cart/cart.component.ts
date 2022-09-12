@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
   cId:number=0;
   cartTotal:number=0;
   popup: boolean=false;
-  check:boolean=true;
+  check:boolean=false;
   demo:any;
    ngOnInit(): void {
 
@@ -59,7 +59,7 @@ export class CartComponent implements OnInit {
     this.productService.getCart(this.uId).subscribe(
       data => {
        this.products=  data;
-       if(this.products.length<0)
+       if(this.products.length==0)
         {
             this.check=false;
         }
@@ -93,6 +93,7 @@ export class CartComponent implements OnInit {
     this.placeOrder(p);
     this.popup=true;
     this.check=false;
+    console.log(this.check);
 
   }
 

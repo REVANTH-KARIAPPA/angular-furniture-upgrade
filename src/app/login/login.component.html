@@ -20,8 +20,8 @@
 			<div class="form-group">
 				<div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">Login failed: {{ errorMessage }}</div>
 			</div>
-
 		</form>
-		<div class="alert alert-success" *ngIf="isLoggedIn">Welcome {{currentUser.username}} <br>Logged in as {{ currentUser.roles }}.</div>
+    <a  class="nav-link center" *ngIf="!isLoggedIn" routerLink="/register">Sign Up</a>
+		
 	</div>
 </div>

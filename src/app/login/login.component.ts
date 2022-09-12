@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
 import { TokenStorageService } from '../_services/token-storage.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppConstants } from '../common/app.constants';
 
 
@@ -23,7 +23,11 @@ export class LoginComponent implements OnInit {
   githubURL = AppConstants.GITHUB_AUTH_URL;
   linkedinURL = AppConstants.LINKEDIN_AUTH_URL;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private route: ActivatedRoute, private userService: UserService) {}
+  constructor(private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private route: ActivatedRoute,
+    private router:Router,
+    private userService: UserService) {}
 
   ngOnInit(): void {
 	const token: string = this.route.snapshot.queryParamMap.get('token');
@@ -48,6 +52,9 @@ export class LoginComponent implements OnInit {
   		this.errorMessage = error;
 	    this.isLoginFailed = true;
   	}
+    if (this.isLoggedIn) {
+      this.router.navigate(['home']);
+     }
   }
 
   onSubmit(): void {
